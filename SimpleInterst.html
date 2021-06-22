@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
      <head>
-        <title>Simple Interest calculator </title>
+        <title>Web App - Simple Interest calculator </title>
          <style>
          #header{
              text-align: center;
@@ -29,7 +29,7 @@
              </select>
              <br><br>
         <button type = "button" onclick="interest();" style="border-radius: 15px;">Answer</button>
-         <input type = text id = "txt"  style="border-radius: 20px;"></form>
+         <input type = text id = "txt"  style="border-radius: 20px;background-color: yellow;"></form>
          <br>
         <p style = "padding-left: 30px;">&copy Everyone Can Get Rich</p></div>
         
@@ -60,11 +60,18 @@
         }
         function interest(){
             var amount = document.getElementById("yes").value;
+             
             var interest = document.getElementById("and").value/100;
              
              var years = document.getElementById("is").value;
              var results = amount*interest*years;
-             document.getElementById("txt").value=results;         
+             if(results < 0){
+                  alert("ENTER POSITIVE NUMBER ONLY");
+                  location.relaod();
+             }
+             else{
+             document.getElementById("txt").value=results;
+             }
         }
     </script>
 </html>
