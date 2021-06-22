@@ -1,0 +1,2 @@
+# SimpleInterest
+simple calucator 
