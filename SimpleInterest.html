@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
      <head>
         <title>Simple Interest calculator </title>
@@ -19,42 +19,51 @@
         <br>
         <form  style ="padding-left: 100px;padding-bottom: 0px;" >
         <label for = "amount" >Amount&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-            <input type = "text" name = "amount "id = "yes"><br><br>
+            <input type = "text" placeholder="enter amount" name = "amount "id = "yes"><br><br>
             <label for = "Interest">Interest Rate&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-             <input type="range" name="Interest" style="margin: 0px;" id = "and" min="0.00" max="100.00" onchange="updateTextInput(this.value);">
-             <input type="text" id="textInput" value=""><br><br>
+             <input type="range" style="width: 50%;" name="Interest" id = "and" min="0" max="2000" onchange="updateTextInput(this.value);">
+             <span id = "demo" value=""></span><br><br>
             <label for = "noOfYear">No. of years&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-             <select name ="noOfYear" id = "is" >
+             <select name ="noOfYear" id = "is" onclick = "loaddropdown();" >
                  <option value ="1" selected>1</option> 
-                 <option value ="2">2</option>
-                 <option value ="3">3</option>
-                 <option value ="4">4</option>
-                 <option value ="5">5</option> 
-                 <option value ="6">6</option> 
-                 <option value ="7">7</option> 
-                 <option value ="8">8</option> 
-                 <option value ="9">9</option> 
-                 <option value ="10">10</option>    
              </select>
-              
              <br><br>
         <button type = "button" onclick="interest();" style="border-radius: 15px;">Answer</button>
-         <input type = text id = "txt" placeholder="enter anything" style="border-radius: 20px;"></form>
+         <input type = text id = "txt"  style="border-radius: 20px;"></form>
          <br>
         <p style = "padding-left: 30px;">&copy Everyone Can Get Rich</p></div>
         
          
     </body>
     <script>
-        function updateTextInput(val) {
-          document.getElementById('textInput').value=val; 
-        }
+         
+         var slider = document.getElementById("and");
+         var output = document.getElementById("demo");
+         output.innerHTML = slider.value/100+""+"%";
 
+        slider.oninput = function() {
+        output.innerHTML = this.value/100+""+"%";
+        }
+        
+        function loaddropdown()
+        {
+            var dropdown=document.getElementById("is");
+            for(var i=2;i<=100;i++)
+            {
+                var newOption = document.createElement("option");
+
+                    newOption.text = i;
+
+                    newOption.value= i;
+                    dropdown.add(newOption);
+            }
+        }
         function interest(){
             var amount = document.getElementById("yes").value;
-            var interest = document.getElementById("and").value;
+            var interest = document.getElementById("and").value/100;
+             
              var years = document.getElementById("is").value;
-             var results = amount*(1+interest*years);
+             var results = amount*interest*years;
              document.getElementById("txt").value=results;         
         }
     </script>
